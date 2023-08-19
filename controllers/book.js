@@ -1,5 +1,5 @@
 const fs = require("fs");
-const multer = require("../middleware/multer-config");
+require("../middleware/multer-config");
 const Book = require("../models/book");
 
 exports.getAllBooks = (req, res, next) => {
@@ -107,29 +107,25 @@ exports.addRating = (req, res, next) => {
     const total = book.ratings.reduce((acc, val) => acc + val.grade, 0);
     return total / book.ratings.length;
   };
-
-  const isUniqueRating = (book) => {
+  const hasUserAlreadyRated = (book) => {
     const isDoubleRated = book.ratings.find(
       (element) => element.userId === userId,
     );
     return isDoubleRated !== undefined;
   };
-
   if (rating > 5 || rating < 0) {
     return res.status(400).json({ error: "Invalid rating value" });
   }
-
-  Book.findById({ _id: req.params.id })
+  Book.findById(req.params.id)
     .then((book) => {
-      if (isUniqueRating(book)) {
+      if (hasUserAlreadyRated(book)) {
         return res.status(403).json({
           error: "User has already rated this book",
         });
       }
-      const updatedBook = { ...book };
-      updatedBook.ratings.push({ userId, grade: rating });
-      updatedBook.averageRating = makeAverageRating(updatedBook);
-      updatedBook
+      book.ratings.push({ userId, grade: rating });
+      book.averageRating = makeAverageRating(book);
+      book
         .save()
         .then(() => {
           res.status(200).json({ book });

@@ -3,8 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 require("dotenv").config();
 
-// const { SECRET_KEY } = process.env;
-const SECRET_KEY = "dontTellAnyone";
+const { SECRET_KEY } = process.env;
 exports.signup = (req, res) => {
   const { email, password } = req.body;
   bcrypt

@@ -14,9 +14,9 @@ const {
 } = require("../controllers/book");
 
 router.get("/", getAllBooks);
-router.get("/:id", getOneBook);
 router.get("/bestrating", getTopThreeBooks);
 router.post("/", auth, multer, createOneBook);
+router.get("/:id", getOneBook);
 router.post("/:id/rating", auth, addRating);
 router.put("/:id", auth, multer, updateOneBook);
 router.delete("/:id", auth, deleteOneBook);
