@@ -1,23 +1,24 @@
-const User = require('../models/user');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const { SECRET_KEY } = process.env;
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const User = require("../models/user");
+require("dotenv").config();
 
+// const { SECRET_KEY } = process.env;
+const SECRET_KEY = "dontTellAnyone";
 exports.signup = (req, res) => {
   const { email, password } = req.body;
   bcrypt
     .hash(password, 10)
     .then((hash) => {
       const user = new User({
-        email: email,
+        email,
         password: hash,
       });
       user
         .save()
         .then(() => {
           res.status(201).json({
-            message: 'User created successfully',
+            message: "User created successfully",
           });
         })
         .catch((error) => {
@@ -38,8 +39,7 @@ exports.login = (req, res, next) => {
     .then((user) => {
       if (user === null) {
         res.status(401).json({
-          message:
-            'paire identifiant/mot de passe incorrect',
+          message: "paire identifiant/mot de passe incorrect",
         });
       } else {
         bcrypt
@@ -47,8 +47,7 @@ exports.login = (req, res, next) => {
           .then((valid) => {
             if (!valid) {
               res.status(401).json({
-                message:
-                  'paire identifiant/mot de passe incorrect',
+                message: "paire identifiant/mot de passe incorrect",
               });
             } else {
               res.status(200).json({
@@ -58,7 +57,7 @@ exports.login = (req, res, next) => {
                     userId: user.id,
                   },
                   SECRET_KEY,
-                  { expiresIn: '24h' }
+                  { expiresIn: "24h" },
                 ),
               });
             }
