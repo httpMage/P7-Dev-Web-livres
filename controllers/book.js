@@ -64,41 +64,44 @@ exports.updateOneBook = (req, res, next) => {
       if (book.userId !== req.auth.userId) {
         return res.status(403).json({ message: "unauthorized request" });
       }
-      Book.updateOne(
+      return Book.updateOne(
         { _id: req.params.id },
         { ...bookObject, _id: req.params.id },
       )
-        .then(() => res.status(200).json({ message: "Objet modifié!" }))
-        .catch((error) => res.status(500).json({ error }));
+        .then(() => {
+          return res.status(200).json({ message: "Objet modifié!" });
+        })
+        .catch((error) => {
+          return res.status(500).json({ error });
+        });
     })
     .catch((error) => {
-      res.status(400).json({ error });
+      return res.status(400).json({ error });
     });
 };
+
 exports.deleteOneBook = (req, res, next) => {
   Book.findOne({ _id: req.params.id })
     .then((book) => {
       if (!book) {
         return res.status(404).json({ message: "Book not found" });
       }
-
       if (book.userId !== req.auth.userId) {
         return res.status(401).json({ message: "Not authorized" });
       }
-
       const filename = book.imageUrl.split("/images/")[1];
       fs.unlink(`images/${filename}`, () => {
         Book.deleteOne({ _id: req.params.id })
           .then(() => {
-            res.status(200).json({ message: "Objet supprimé !" });
+            return res.status(200).json({ message: "Objet supprimé !" });
           })
           .catch((error) => {
-            res.status(500).json({ error });
+            return res.status(500).json({ error });
           });
       });
     })
     .catch((error) => {
-      res.status(500).json({ error });
+      return res.status(500).json({ error });
     });
 };
 exports.addRating = (req, res, next) => {
@@ -128,13 +131,13 @@ exports.addRating = (req, res, next) => {
       book
         .save()
         .then(() => {
-          res.status(200).json({ book });
+          return res.status(200).json({ book });
         })
         .catch((error) => {
-          res.status(500).json({ error });
+          return res.status(500).json({ error });
         });
     })
     .catch((error) => {
-      res.status(500).json({ error });
+      return res.status(500).json({ error });
     });
 };
