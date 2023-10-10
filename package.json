@@ -2,6 +2,7 @@
   "name": "mon-vieux-grimoire-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https:/httpMage.github.io/Poua_Adrien_7_Grimoire_082023",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
@@ -23,6 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "eslintConfig": {
@@ -52,6 +55,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.0.0",
     "prettier": "^3.0.2"
   }
 }
