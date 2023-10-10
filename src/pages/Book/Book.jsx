@@ -114,7 +114,11 @@ function Book() {
         alt={`Le livre ${book.title} a bien été supprimé`}
       />
       <Link to="/">
+<<<<<<< HEAD
         <button type="button">{`Retour à l'accueil`}</button>
+=======
+        <button type="button">Retour à l'accueil</button>
+>>>>>>> 2b2a3650319d0901def8bdbdacb9b6dc1c5696cf
       </Link>
     </div>
   ) : null;

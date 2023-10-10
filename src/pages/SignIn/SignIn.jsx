@@ -134,7 +134,11 @@ function SignIn({ setUser }) {
             {isLoading ? (
               <div className="mr-2 w-5 h-5 border-l-2 rounded-full animate-spin" />
             ) : null}
+<<<<<<< HEAD
             <span>{`S'inscrire`}</span>
+=======
+            <span>S'inscrire</span>
+>>>>>>> 2b2a3650319d0901def8bdbdacb9b6dc1c5696cf
           </button>
         </div>
       </div>

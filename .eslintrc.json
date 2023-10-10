@@ -20,8 +20,12 @@
             "error",
             {
                 "endOfLine": "auto"
+<<<<<<< HEAD
             },
             { "react/no-unescaped-entities": 0 }
+=======
+            }
+>>>>>>> 2b2a3650319d0901def8bdbdacb9b6dc1c5696cf
         ]
     }
 }
