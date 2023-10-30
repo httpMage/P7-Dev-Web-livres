@@ -1,9 +1,9 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://api.codebyadrien.fr:1024";
 export const API_ROUTES = {
-  SIGN_UP: `${API_URL}/api/auth/signup`,
-  SIGN_IN: `${API_URL}/api/auth/login`,
-  BOOKS: `${API_URL}/api/books`,
-  BEST_RATED: `${API_URL}/api/books/bestrating`,
+  SIGN_UP: `${API_URL}/grimoire/auth/signup`,
+  SIGN_IN: `${API_URL}/grimoire/auth/login`,
+  BOOKS: `${API_URL}/grimoire/books`,
+  BEST_RATED: `${API_URL}/grimoire/books/bestrating`,
 };
 
 export const APP_ROUTES = {
