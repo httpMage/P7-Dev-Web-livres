@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Poua_Adrien_7_Grimoire_082023/static/css/main.ba32ca06.css",
-    "main.js": "/Poua_Adrien_7_Grimoire_082023/static/js/main.f0254a67.js",
+    "main.css": "/Poua_Adrien_7_Grimoire_082023/static/css/main.071dd268.css",
+    "main.js": "/Poua_Adrien_7_Grimoire_082023/static/js/main.5e982b46.js",
     "static/js/787.2c0e5b38.chunk.js": "/Poua_Adrien_7_Grimoire_082023/static/js/787.2c0e5b38.chunk.js",
     "static/media/home_banner.jpg": "/Poua_Adrien_7_Grimoire_082023/static/media/home_banner.e160219c56381f5d72be.jpg",
     "static/media/book_delete.png": "/Poua_Adrien_7_Grimoire_082023/static/media/book_delete.f0aec92a2dde895664ec.png",
     "static/media/book_add.jpg": "/Poua_Adrien_7_Grimoire_082023/static/media/book_add.39d19f3dbedefa81ee63.jpg",
-    "static/media/Logo.svg": "/Poua_Adrien_7_Grimoire_082023/static/media/Logo.16725d5f400454fc59f2d21c740b0a06.svg",
+    "static/media/Logo.svg": "/Poua_Adrien_7_Grimoire_082023/static/media/Logo.c3423c0c21099c7c3fe5bf2cecd83263.svg",
     "static/media/map_footer.png": "/Poua_Adrien_7_Grimoire_082023/static/media/map_footer.a4eb4130dd9828775917.png",
     "index.html": "/Poua_Adrien_7_Grimoire_082023/index.html",
-    "main.ba32ca06.css.map": "/Poua_Adrien_7_Grimoire_082023/static/css/main.ba32ca06.css.map",
-    "main.f0254a67.js.map": "/Poua_Adrien_7_Grimoire_082023/static/js/main.f0254a67.js.map",
+    "main.071dd268.css.map": "/Poua_Adrien_7_Grimoire_082023/static/css/main.071dd268.css.map",
+    "main.5e982b46.js.map": "/Poua_Adrien_7_Grimoire_082023/static/js/main.5e982b46.js.map",
     "787.2c0e5b38.chunk.js.map": "/Poua_Adrien_7_Grimoire_082023/static/js/787.2c0e5b38.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba32ca06.css",
-    "static/js/main.f0254a67.js"
+    "static/css/main.071dd268.css",
+    "static/js/main.5e982b46.js"
   ]
 }
