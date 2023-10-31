@@ -1,6 +1,5 @@
-const fs = require("fs");
-require("../middleware/multer-config");
-const Book = require("../models/book");
+const fs = require('fs');
+const Book = require('../models/book');
 
 // Récupérer tous les livres
 exports.getAllBooks = (req, res, next) => {
@@ -34,7 +33,7 @@ exports.createBook = (req, res, next) => {
   const bookObject = JSON.parse(req.body.book);
   delete bookObject.id;
   delete bookObject.userId;
-  const imageUrl = `${req.protocol}://${req.get("host")}/images/${
+  const imageUrl = `${req.protocol}://${req.get('host')}/images/${
     req.file.filename
   }`;
   const book = new Book({
@@ -46,7 +45,7 @@ exports.createBook = (req, res, next) => {
   book
     .save()
     .then(() => {
-      res.status(201).json({ message: "Objet enregistré !" });
+      res.status(201).json({ message: 'Objet enregistré !' });
     })
     .catch((error) => {
       res.status(400).json({ error });
@@ -58,14 +57,14 @@ exports.updateBook = (req, res, next) => {
   // Si req.file existe (si une image est téléchargée)
   const bookObject = req.file
     ? {
-        ...JSON.parse(req.body.book),
-        // Ajouter une nouvelle propriété imageUrl
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
-      }
+      ...JSON.parse(req.body.book),
+      // Ajouter une nouvelle propriété imageUrl
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${
+        req.file.filename
+      }`,
+    }
     : // Si aucune image n'est téléchargée, utiliser directement les propriétés de req.body
-      { ...req.body };
+    { ...req.body };
 
   delete bookObject.userId;
   Book.findOne({ _id: req.params.id })
@@ -78,16 +77,10 @@ exports.updateBook = (req, res, next) => {
         { _id: req.params.id },
         { ...bookObject, _id: req.params.id },
       )
-        .then(() => {
-          return res.status(200).json({ message: "Objet modifié !" });
-        })
-        .catch((error) => {
-          return res.status(500).json({ error });
-        });
+        .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+        .catch((error) => res.status(500).json({ error }));
     })
-    .catch((error) => {
-      return res.status(400).json({ error });
-    });
+    .catch((error) => res.status(400).json({ error }));
 };
 
 // Supprimer un livre
@@ -101,20 +94,14 @@ exports.deleteBook = (req, res, next) => {
       if (book.userId !== req.auth.userId) {
         return res.status(401).json(new Error());
       }
-      const filename = book.imageUrl.split("/images/")[1];
+      const filename = book.imageUrl.split('/images/')[1];
       fs.unlink(`images/${filename}`, () => {
         Book.deleteOne({ _id: req.params.id })
-          .then(() => {
-            return res.status(200).json({ message: "Objet supprimé !" });
-          })
-          .catch((error) => {
-            return res.status(500).json({ error });
-          });
+          .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
+          .catch((error) => res.status(500).json({ error }));
       });
     })
-    .catch((error) => {
-      return res.status(500).json({ error });
-    });
+    .catch((error) => res.status(500).json({ error }));
 };
 
 // Ajouter une note à un livre
@@ -148,14 +135,8 @@ exports.addRating = (req, res, next) => {
       book.averageRating = makeAverageRating(book);
       book
         .save()
-        .then(() => {
-          return res.status(200).json(book);
-        })
-        .catch((error) => {
-          return res.status(500).json({ error });
-        });
+        .then(() => res.status(200).json(book))
+        .catch((error) => res.status(500).json({ error }));
     })
-    .catch((error) => {
-      return res.status(500).json({ error });
-    });
+    .catch((error) => res.status(500).json({ error }));
 };
